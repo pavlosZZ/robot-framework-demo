@@ -1,10 +1,13 @@
 *** Settings ***
-Documentation     Simple example using SeleniumLibrary.
-Library           SeleniumLibrary
+Documentation       Simple example using SeleniumLibrary.
+
+Library             SeleniumLibrary
+
 
 *** Variables ***
-${LOGIN URL}      https://www.saucedemo.com/
-${BROWSER}        Edge
+${LOGIN URL}    https://www.saucedemo.com/
+${BROWSER}      Edge
+
 
 *** Test Cases ***
 Valid Login
@@ -15,13 +18,14 @@ Valid Login
     Welcome Page Should Be Open
     [Teardown]    Close Browser
 
+
 *** Keywords ***
 Open Browser To Login Page
     Open Browser    ${LOGIN URL}    ${BROWSER}
 
 Input Username
     [Arguments]    ${username}
-    Input Text     css=[id=user-name]    ${username}
+    Input Text    css=[id=user-name]    ${username}
 
 Input Password
     [Arguments]    ${password}

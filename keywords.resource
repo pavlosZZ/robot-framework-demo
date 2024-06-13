@@ -1,5 +1,4 @@
 *** Settings ***
-Library    String
-Library    Collections
-Library    DateTime
-  
+Library     String
+Library     Collections
+Library     DateTime

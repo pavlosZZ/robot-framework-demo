@@ -4,18 +4,8 @@ pipeline {
     stages {
         stage("Run robotidy on repository") {
             steps {
-                // --nostatusrc prevents your job from failing automatically if any
-                // tests fail. This is then later handled with the RF plugin with
-                // pass thresholds
-                sh script: "robotidy ./repository/", returnStatus: true
-            }
-        }
-        stage("Run robotidy on automation") {
-            steps {
-                // --nostatusrc prevents your job from failing automatically if any
-                // tests fail. This is then later handled with the RF plugin with
-                // pass thresholds
-                sh script: "robotidy ./automation/", returnStatus: true
+                // run robotidy command to format all robot and resources files.
+                sh script: "robotidy .", returnStatus: true
             }
         }
         stage("Run Robot tests") {
@@ -32,7 +22,7 @@ pipeline {
         always {
             step([
                     $class              : 'RobotPublisher',
-                    outputPath          : 'test_results',
+                    outputPath          : 'results',
                     outputFileName      : "output.xml",
                     reportFileName      : 'report.html',
                     logFileName         : 'log.html',
